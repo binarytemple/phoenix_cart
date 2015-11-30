@@ -2,13 +2,17 @@ defmodule PhoenixCart.ProductController do
   use PhoenixCart.Web, :controller
 
   alias PhoenixCart.Product
+  alias PhoenixCart.Category
   alias PhoenixCart.LineItem
 
   plug :scrub_params, "product" when action in [:create, :update]
   plug PhoenixCart.Plugs.Cart when action in [:show]
 
   def index(conn, _params) do
-    products = Repo.all(Product)
+   alias PhoenixCart.Product
+   alias PhoenixCart.Category 
+   import Ecto.Query
+   products = Repo.all( from p in Product,  join: category in assoc(p, :category) ) |> Repo.preload [:category]
     render(conn, "index.html", products: products)
   end
 

@@ -1,5 +1,6 @@
 defmodule PhoenixCart.Product do
   use PhoenixCart.Web, :model
+  alias PhoenixCart.Category
 
   schema "products" do
     field :name, :string

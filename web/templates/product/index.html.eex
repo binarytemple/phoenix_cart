@@ -7,7 +7,7 @@
       <th>Price</th>
       <th>Description</th>
       <th>Category</th>
-
+      <th>Category name</th>
       <th></th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
       <td><%= product.name %></td>
       <td><%= product.price %></td>
       <td><%= product.description %></td>
-      <td><%= product.category_id %></td>
+      <td><%= product.category_id %> <%= product.category.name %> </td>
 
       <td class="text-right">
         <%= link "Show", to: product_path(@conn, :show, product), class: "btn btn-default btn-xs" %>
