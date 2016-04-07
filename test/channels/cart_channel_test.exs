@@ -8,15 +8,18 @@ defmodule PhoenixCart.CartChannelTest do
     token = Phoenix.Token.sign(@endpoint, "cart", 1) 
     {:ok, socket} =  UserSocket.connect(%{"token" => token}, socket())
     {:ok, _, socket} = subscribe_and_join(socket,CartChannel, "carts:lobby")
-    IO.inspect(socket)
     {:ok, %{socket: socket} }
   end
 
   test "ping replies with status ok", %{socket: socket} do
     ref = push socket, "ping", %{"hello" => "there"}
-    IO.inspect(ref)
     assert_reply ref, :ok, %{"hello" => "there"}
     :ok
+  end
+
+  test "join_map_and_uppercase replies with status ok", %{socket: socket} do
+    ref = push socket, "join_map_and_uppercase", %{"greetings" => "dave"}
+    assert_reply ref, :ok, %{"result" => "GREETINGS DAVE" }
   end
 
   test "shout broadcasts to carts:lobby", %{socket: socket} do

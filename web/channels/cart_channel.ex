@@ -12,8 +12,17 @@ defmodule PhoenixCart.CartChannel do
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
   def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
+   {:reply, {:ok,payload }, socket}
   end
+
+  def handle_in("join_map_and_uppercase", payload, socket) do
+   payload_joined=Enum.reduce( Map.to_list(payload) , "",  fn ({x,y},acc) -> x <> " " <>  y <> acc end )
+   {:reply, {:ok, %{"result" => String.upcase( payload_joined )} }, socket}
+  end
+
+
+
+
 
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (carts:lobby).
