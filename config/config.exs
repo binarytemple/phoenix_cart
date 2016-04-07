@@ -10,9 +10,8 @@ config :phoenix_cart, PhoenixCart.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "lSI5OjubaSDoC14PQ/uUjoteSMN7mSdOOQymBzcB0dJ+ND8+NR8fJT/7MSdXLclz",
-  render_errors: [default_format: "html"],
-  pubsub: [name: PhoenixCart.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  render_errors: [accepts: ["html"]],
+  pubsub: [name: PhoenixCart.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
