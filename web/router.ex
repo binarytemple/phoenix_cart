@@ -16,17 +16,17 @@ defmodule PhoenixCart.Router do
   scope "/", PhoenixCart do
     pipe_through :browser # Use the default browser stack
 
-    resources "/categories", CategoryController
-    resources "/products", ProductController
-    resources "/orders", OrderController
-    resources "/cart", CartController, only: [:index, :update, :delete]
-    resources "/checkout", CheckoutController, only: [:update, :index]
+      resources "/categories", CategoryController
+      resources "/products", ProductController
+      resources "/orders", OrderController
+      resources "/cart", CartController, only: [:index, :update, :delete]
+      resources "/checkout", CheckoutController, only: [:update, :index]
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixCart do
+  #scope "/api", PhoenixCart do
   #   pipe_through :api
-  # end
+  #end
 end
